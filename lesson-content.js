@@ -5,12 +5,6 @@ const LESSON_CONTENT = {
     // Beginner Path Content
     '1-1': {
         title: 'What is Blockchain?',
-        storyTitle: 'Miner protest',
-        storyDialogue: `
-            <p>Moments later, your Hover Screen activates.</p>
-            <p class="dialogue">—Deborah Chunk: "Thomas Vanderpoole. As the well-dressed CEO of BitRey, you run, by far, the largest bitcoin mining pool in the world. You also manufacture bitcoin mining machines. What is happening? Is bitcoin dying?"</p>
-            <p class="dialogue">—Vanderpoole: "Let's start from the top. Yes, I am, Deborah, and yes, I do. The Vanderpooles—my well-dressed daddy and his well-dressed daddy before him—have been mining since block 21,000. That's why I can confidently say that miners across the world are causing these delays by turning off their machines. This is a protest. No one wants bitcoin to stop being issued at 21 million. Miners cannot survive on fees alone."</p>
-        `,
         story: `
             <div class="story-paragraph">
                 <p>Blockchain is a shared digital record that stores transactions securely across many computer, instead of one company controlling it, everyone on the network helps keep it running. Information is saved in blocks that are linked together, making it very hard to change or fake. This system is secure because it uses cryptography and rules that everyone follows.</p>
