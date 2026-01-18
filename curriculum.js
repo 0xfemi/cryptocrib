@@ -12,7 +12,7 @@ const CURRICULUM = {
             {
                 id: 'ch1-blockchain-basics',
                 title: 'Chapter 1: The Evolution of Value and the Birth of Bitcoin',
-                description: 'Understanding distributed ledgers, consensus mechanisms, and how blockchain works.',
+                description: 'Explore the history of money, from pre-monetary systems to fiat currency, the 2008 financial crisis, and how Bitcoin emerged as a revolutionary solution to create decentralized digital money.',
                 lessons: [
                     { id: '1-1', title: 'The Pre-Monetary Era and the Problem of Coincidence', type: 'reading', duration: 15, xp: 50 },
                     { id: '1-2', title: 'The Shift to Fiat and the Trust Gap', type: 'reading', duration: 20, xp: 50 },
