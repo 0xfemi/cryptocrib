@@ -243,8 +243,8 @@
             const chapterMatch = chapter.title.match(/\d+/);
             const chapterNumber = chapterMatch ? chapterMatch[0] : '1';
 
-            // Update lesson info
-            document.getElementById('lesson-chapter-number').textContent = `Chapter ${chapterNumber}`;
+            // Update lesson info - show full chapter title
+            document.getElementById('lesson-chapter-number').textContent = chapter.title;
             
             // Set subtitle to lesson title
             const subtitleElement = document.getElementById('lesson-subtitle');
