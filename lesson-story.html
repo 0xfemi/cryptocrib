@@ -66,8 +66,9 @@
 
         // Initialize story page
         document.addEventListener('DOMContentLoaded', function() {
-            // Parse URL - support hash-based format
-            let pathId, chapterId, lessonId;
+            // Parse URL - support hash-based format with optional page number
+            // Format: #/path/chapter/lesson/page
+            let pathId, chapterId, lessonId, pageNumber = 1;
             
             const hash = window.location.hash;
             if (hash && hash.startsWith('#/')) {
@@ -76,6 +77,10 @@
                     pathId = parts[0];
                     chapterId = parts[1];
                     lessonId = parts[2];
+                    // Page number is optional (defaults to 1)
+                    if (parts.length >= 4 && parts[3]) {
+                        pageNumber = parseInt(parts[3]) || 1;
+                    }
                 }
             }
             
@@ -85,6 +90,7 @@
                 pathId = urlParams.get('path') || 'beginner';
                 chapterId = urlParams.get('chapter') || 'ch1-blockchain-basics';
                 lessonId = urlParams.get('lesson') || '1-1';
+                pageNumber = parseInt(urlParams.get('page')) || 1;
             }
 
             if (!window.CURRICULUM || !window.CURRICULUM[pathId]) {
@@ -123,22 +129,28 @@
                 storyTitleElement.textContent = lesson.title;
             }
 
-            // Load story content
-            loadStoryContent(lesson, chapter);
+            // Load story content with pagination
+            const pages = splitContentIntoPages(lesson);
+            loadStoryContent(lesson, chapter, pages, pageNumber);
 
-            // Setup continue button - navigate to next lesson in chapter
+            // Setup continue button - navigate to next page or next lesson
             document.getElementById('btn-continue-story').addEventListener('click', function() {
-                // Find current lesson index
-                const currentLessonIndex = chapter.lessons.findIndex(l => l.id === lessonId);
-                
-                // Check if there's a next lesson in this chapter
-                if (currentLessonIndex >= 0 && currentLessonIndex < chapter.lessons.length - 1) {
-                    // Go to next lesson story page
-                    const nextLesson = chapter.lessons[currentLessonIndex + 1];
-                    window.location.href = `lesson-story.html#/${pathId}/${chapterId}/${nextLesson.id}`;
+                // Check if there's a next page in current lesson
+                if (pageNumber < pages.length) {
+                    // Go to next page of same lesson
+                    window.location.href = `lesson-story.html#/${pathId}/${chapterId}/${lessonId}/${pageNumber + 1}`;
                 } else {
-                    // Last lesson in chapter, go back to lesson summary page
-                    window.location.href = `lesson.html#/${pathId}/${chapterId}/${lessonId}`;
+                    // Last page of current lesson, go to first page of next lesson
+                    const currentLessonIndex = chapter.lessons.findIndex(l => l.id === lessonId);
+                    
+                    if (currentLessonIndex >= 0 && currentLessonIndex < chapter.lessons.length - 1) {
+                        // Go to first page of next lesson
+                        const nextLesson = chapter.lessons[currentLessonIndex + 1];
+                        window.location.href = `lesson-story.html#/${pathId}/${chapterId}/${nextLesson.id}/1`;
+                    } else {
+                        // Last lesson in chapter, go back to lesson summary page
+                        window.location.href = `lesson.html#/${pathId}/${chapterId}/${lessonId}`;
+                    }
                 }
             });
 
@@ -156,27 +168,62 @@
                 imageSection.className = 'story-image-section ' + imageClass;
             }
 
-            function loadStoryContent(lesson, chapter) {
+            function splitContentIntoPages(lesson) {
+                let fullContent = '';
+                
+                // Get content from lesson-content.js
+                if (window.LESSON_CONTENT && window.LESSON_CONTENT[lesson.id]) {
+                    const content = window.LESSON_CONTENT[lesson.id];
+                    
+                    // Prefer storyDialogue, then story
+                    if (content.storyDialogue) {
+                        fullContent = content.storyDialogue;
+                    } else if (content.story) {
+                        fullContent = content.story.replace(/<div[^>]*>/g, '').replace(/<\/div>/g, '').trim();
+                    }
+                }
+                
+                // If no content, create default
+                if (!fullContent) {
+                    fullContent = `<p>Welcome to ${lesson.title}. Let's begin exploring this topic.</p>`;
+                }
+                
+                // Split content into paragraphs
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = fullContent;
+                const paragraphs = Array.from(tempDiv.querySelectorAll('p'));
+                
+                // Group paragraphs into pages (2-3 paragraphs per page)
+                const pages = [];
+                const paragraphsPerPage = 2; // Show 2 paragraphs per page
+                
+                for (let i = 0; i < paragraphs.length; i += paragraphsPerPage) {
+                    const pageParagraphs = paragraphs.slice(i, i + paragraphsPerPage);
+                    const pageContent = pageParagraphs.map(p => p.outerHTML).join('');
+                    pages.push(pageContent);
+                }
+                
+                // If no paragraphs found, return single page with original content
+                if (pages.length === 0) {
+                    pages.push(fullContent);
+                }
+                
+                return pages;
+            }
+
+            function loadStoryContent(lesson, chapter, pages, pageNumber) {
                 const storyContent = document.getElementById('story-content');
-                let contentToDisplay = '';
                 
-                // Check if we have custom story dialogue for this lesson
-                if (window.LESSON_CONTENT && window.LESSON_CONTENT[lesson.id] && window.LESSON_CONTENT[lesson.id].storyDialogue) {
-                    contentToDisplay = window.LESSON_CONTENT[lesson.id].storyDialogue;
-                } 
-                // Otherwise, use the story content from lesson-content.js
-                else if (window.LESSON_CONTENT && window.LESSON_CONTENT[lesson.id] && window.LESSON_CONTENT[lesson.id].story) {
-                    // Extract text from story and format for story page
-                    const storyHtml = window.LESSON_CONTENT[lesson.id].story;
-                    // Remove wrapper divs and extract paragraphs
-                    contentToDisplay = storyHtml.replace(/<div[^>]*>/g, '').replace(/<\/div>/g, '').trim();
-                }
-                // Fallback to lesson title if no content available
-                else {
-                    contentToDisplay = `<p>Welcome to ${lesson.title}. Let's begin exploring this topic.</p>`;
-                }
+                // Ensure pageNumber is within bounds
+                const currentPage = Math.min(Math.max(1, pageNumber), pages.length);
                 
-                storyContent.innerHTML = contentToDisplay;
+                // Display the current page content
+                storyContent.innerHTML = pages[currentPage - 1] || pages[0] || '';
+                
+                // Update URL if page number was corrected
+                if (currentPage !== pageNumber) {
+                    window.history.replaceState(null, '', `lesson-story.html#/${pathId}/${chapterId}/${lessonId}/${currentPage}`);
+                }
             }
         });
     </script>
