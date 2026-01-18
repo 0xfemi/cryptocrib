@@ -131,16 +131,26 @@
 
             // Load story content with pagination
             const pages = splitContentIntoPages(lesson);
-            const currentPageNumber = pageNumber; // Store current page number
+            let currentPageNumber = pageNumber; // Store current page number (mutable)
             
             loadStoryContent(lesson, chapter, pages, currentPageNumber);
 
             // Setup continue button - navigate to next page or next lesson
             document.getElementById('btn-continue-story').addEventListener('click', function() {
+                // Get current page number from URL or use stored value
+                const hash = window.location.hash;
+                let urlPageNumber = currentPageNumber;
+                if (hash && hash.startsWith('#/')) {
+                    const parts = hash.substring(2).split('/');
+                    if (parts.length >= 4 && parts[3]) {
+                        urlPageNumber = parseInt(parts[3]) || 1;
+                    }
+                }
+                
                 // Check if there's a next page in current lesson
-                if (currentPageNumber < pages.length) {
+                if (urlPageNumber < pages.length) {
                     // Go to next page of same lesson
-                    window.location.href = `lesson-story.html#/${pathId}/${chapterId}/${lessonId}/${currentPageNumber + 1}`;
+                    window.location.href = `lesson-story.html#/${pathId}/${chapterId}/${lessonId}/${urlPageNumber + 1}`;
                 } else {
                     // Last page of current lesson, go to first page of next lesson
                     const currentLessonIndex = chapter.lessons.findIndex(l => l.id === lessonId);

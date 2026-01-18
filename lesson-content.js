@@ -3,13 +3,23 @@
 
 const LESSON_CONTENT = {
     // Beginner Path Content
-    '1-1': {
-        title: 'What is Blockchain?',
+    '1-0': {
+        title: 'Introduction',
         story: `
             <div class="story-paragraph">
-                <p>Blockchain is a shared digital record that stores transactions securely across many computer, instead of one company controlling it, everyone on the network helps keep it running. Information is saved in blocks that are linked together, making it very hard to change or fake. This system is secure because it uses cryptography and rules that everyone follows.</p>
-                
-                <p>Bitcoin was the first use of blockchain, allowing people to send money without banks. Ethereum later added smart contracts, which are programs that run automatically on the blockchain. Overall, blockchain helps people exchange value online in a safe, open, and trusted way.</p>
+                <p>Welcome to Chapter 1: The Evolution of Value and the Birth of Bitcoin. In this chapter, we'll explore the fascinating journey of money from its earliest forms to the revolutionary technology that is Bitcoin. You'll discover how humanity evolved from barter systems to digital currencies, and understand the problems that Bitcoin was designed to solve.</p>
+                <p>Throughout this chapter, you'll learn about the pre-monetary era, the shift to fiat currency, the 2008 financial crisis that changed everything, and how Satoshi Nakamoto's vision created a new form of digital money that operates without intermediaries. Get ready to embark on a journey through the history and innovation that gave birth to the world's first successful cryptocurrency.</p>
+            </div>
+        `,
+        resources: [],
+        quiz: []
+    },
+    '1-1': {
+        title: 'The Pre-Monetary Era and the Problem of Coincidence',
+        story: `
+            <div class="story-paragraph">
+                <p>Before money existed, people relied on barter—directly exchanging goods and services with each other. Imagine needing to trade your apples for shoes, but the shoemaker only wants pears. This fundamental problem, known as the "coincidence of wants," severely limited trade and economic growth. The inefficiency of finding someone who both wanted what you had and had what you wanted made large-scale commerce nearly impossible.</p>
+                <p>Early forms of money emerged to solve this problem. Shells, metals, and other commodities began serving as universal mediums of exchange, acting as a common unit of value that everyone could accept. This evolution laid the groundwork for complex economies, moving beyond simple direct exchanges to systems where value could be easily transferred and accumulated. The invention of money was one of humanity's greatest innovations, enabling trade and commerce to flourish.</p>
             </div>
         `,
         resources: [
@@ -48,10 +58,11 @@ const LESSON_CONTENT = {
         ]
     },
     '1-2': {
-        title: 'Distributed Ledgers Explained',
+        title: 'The Shift to Fiat and the Trust Gap',
         story: `
             <div class="story-paragraph">
-                <p>A distributed ledger is a database that is consensually shared and synchronized across multiple sites, institutions, or geographies. Unlike traditional centralized databases, distributed ledgers have no central data store or administration functionality. This architecture ensures that no single point of failure can compromise the entire system, and participants can verify transactions independently without relying on a trusted third party. The distributed nature means that even if many nodes fail or are compromised, the network continues to operate reliably as long as a sufficient number of nodes remain active.</p>
+                <p>Fiat money, like the dollar or euro, is government-issued currency not backed by a physical commodity like gold. Its value comes from public trust in the issuing government and its acceptance as legal tender. While convenient and widely accepted, this system introduces a critical "trust gap": we rely on central banks and governments to manage the money supply responsibly, prevent inflation, and maintain economic stability.</p>
+                <p>Historical examples of hyperinflation in Zimbabwe, Venezuela, and Weimar Germany show what happens when this trust erodes. When governments print money excessively or lose control of monetary policy, currency can become worthless, devastating savings and destroying livelihoods. This reliance on centralized authorities for monetary policy became a significant point of contention, especially during times of economic uncertainty like the 2008 financial crisis.</p>
             </div>
         `,
         resourceSummary: `
@@ -101,10 +112,11 @@ const LESSON_CONTENT = {
         ]
     },
     '1-3': {
-        title: 'Consensus Mechanisms: PoW vs PoS',
+        title: 'The 2008 Global Financial Crisis',
         story: `
             <div class="story-paragraph">
-                <p>Consensus mechanisms are the protocols that allow blockchain networks to agree on the validity of transactions and maintain a single, consistent ledger across all nodes. Proof of Work (PoW) requires miners to solve computationally intensive puzzles to validate transactions and create new blocks, with Bitcoin being the most famous example. Proof of Stake (PoS) selects validators based on the amount of cryptocurrency they hold and stake as collateral, with Ethereum transitioning to this model in 2022. Each mechanism has trade-offs between security, energy consumption, and decentralization, with PoW providing proven security through computational work while PoS offers energy efficiency and faster transaction processing.</p>
+                <p>The 2008 global financial crisis exposed severe vulnerabilities in the traditional banking system, leading to widespread distrust in financial institutions and government oversight. Major banks collapsed, credit markets froze, and governments around the world spent trillions bailing out financial institutions. The crisis revealed that centralized control over money could fail catastrophically, leaving millions without jobs, homes, or savings.</p>
+                <p>This period of economic turmoil fueled a search for alternative financial systems that were more transparent, resilient, and less reliant on intermediaries. The crisis served as a stark reminder of the fragility of systems built on centralized trust, paving the way for new ideas about how money and value could be managed without relying on banks or governments. It was in this environment that Bitcoin emerged as a revolutionary solution.</p>
             </div>
         `,
         resources: [
@@ -131,10 +143,11 @@ const LESSON_CONTENT = {
         ]
     },
     '1-4': {
-        title: 'How Blocks are Created',
+        title: 'Satoshi Nakamoto and the Whitepaper',
         story: `
             <div class="story-paragraph">
-                <p>Blocks are the fundamental building units of a blockchain, containing batches of validated transactions that are cryptographically linked together. The process of creating a block involves collecting pending transactions, validating them according to the network\'s rules, and then adding the block to the chain through the consensus mechanism. In Proof of Work systems like Bitcoin, miners compete to solve a cryptographic puzzle, and the first to solve it gets to create the next block and receive rewards. Each block contains a header with metadata including the previous block\'s hash, a timestamp, a nonce, and a Merkle root of all transactions, creating an immutable chain where altering any block would require recalculating all subsequent blocks.</p>
+                <p>In the midst of the financial turmoil, an anonymous entity named Satoshi Nakamoto published the Bitcoin whitepaper in October 2008, titled "Bitcoin: A Peer-to-Peer Electronic Cash System." This groundbreaking paper proposed a decentralized digital currency that would allow online payments to be sent directly from one party to another without going through a financial institution. Satoshi's innovation was a system that solved the "double-spending problem" using cryptographic proof instead of trust.</p>
+                <p>The whitepaper laid the foundation for a new era of digital finance, introducing concepts like Proof of Work, distributed consensus, and cryptographic hashing. It was a quiet revolution, offering a radical alternative to the existing financial order—one where trust was placed in mathematics and code rather than institutions and governments.</p>
             </div>
         `,
         resources: [
@@ -161,10 +174,11 @@ const LESSON_CONTENT = {
         ]
     },
     '1-5': {
-        title: 'Merkle Trees and Hashing',
+        title: 'The Genesis Block',
         story: `
             <div class="story-paragraph">
-                <p>Merkle trees are a fundamental data structure in blockchain technology that enable efficient and secure verification of large datasets. A Merkle tree organizes transactions in a binary tree where each leaf node represents a transaction hash, and each parent node is the hash of its children, ultimately creating a single root hash that represents the entire set of transactions. This structure allows nodes to verify that a specific transaction is included in a block by checking just a small path through the tree, rather than downloading and verifying all transactions. Hashing functions convert data of any size into a fixed-length string of characters, and any change to the input data produces a completely different hash, making it ideal for detecting tampering and creating cryptographic links between blocks.</p>
+                <p>On January 3, 2009, Satoshi Nakamoto mined the Bitcoin genesis block, the very first block in the Bitcoin blockchain. Embedded within this block was a hidden message: "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks." This message served as both a timestamp and a powerful political statement, highlighting the very problem Bitcoin was designed to solve: the need for a financial system independent of central authorities.</p>
+                <p>The genesis block was not just a technical starting point; it was a philosophical declaration, marking the birth of a new financial paradigm. From this single block, an entire network would grow, processing billions of dollars in transactions and demonstrating that a decentralized, trustless monetary system was not only possible but viable.</p>
             </div>
         `,
         resources: [
@@ -191,10 +205,11 @@ const LESSON_CONTENT = {
         ]
     },
     '1-6': {
-        title: 'Challenge: Build a Simple Hash Function',
+        title: 'Solving the Double Spend Problem',
         story: `
             <div class="story-paragraph">
-                <p>Understanding how hash functions work is crucial for grasping blockchain technology at a deeper level. A hash function takes input data of any size and produces a fixed-size output that appears random but is deterministic, meaning the same input always produces the same output. Cryptographic hash functions like SHA-256 have three key properties: they are one-way functions that cannot be reversed, they produce unique outputs for different inputs, and even a tiny change in input creates a completely different output. Building a simple hash function helps you understand these concepts and see how blockchain uses hashing to create secure, tamper-evident chains of blocks where any modification would be immediately detectable through hash mismatches.</p>
+                <p>The double-spend problem had plagued attempts at digital currencies for decades. How do you prevent someone from spending the same digital coin twice? Previous solutions required trusted third parties like banks or payment processors to verify transactions. Bitcoin solved this problem using a distributed network and cryptographic proof, eliminating the need for trusted intermediaries.</p>
+                <p>Through Proof of Work and the longest-chain rule, Bitcoin ensures that all network participants agree on a single, valid transaction history. Once a transaction is confirmed in a block and subsequent blocks are added, reversing it becomes computationally infeasible. This breakthrough made peer-to-peer digital cash possible for the first time in history, creating a system where trust was placed in mathematics and cryptography rather than institutions.</p>
             </div>
         `,
         resources: [
