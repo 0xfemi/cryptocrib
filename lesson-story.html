@@ -318,10 +318,13 @@
 
                 // Add click handlers to lesson items
                 lessonsList.querySelectorAll('.lesson-item').forEach(item => {
-                    item.addEventListener('click', function() {
-                        const lessonId = this.dataset.lessonId;
-                        if (lessonId !== currentLessonId) {
-                            window.location.href = `lesson-story.html#/${pathId}/${chapterId}/${lessonId}/1`;
+                    item.addEventListener('click', function(e) {
+                        e.stopPropagation(); // Prevent event bubbling
+                        const clickedLessonId = this.getAttribute('data-lesson-id');
+                        
+                        // Navigate to the clicked lesson (always navigate to page 1)
+                        if (clickedLessonId) {
+                            window.location.href = `lesson-story.html#/${pathId}/${chapterId}/${clickedLessonId}/1`;
                         }
                     });
                 });
