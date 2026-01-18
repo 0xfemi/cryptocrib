@@ -165,18 +165,13 @@
 
             // Setup continue button - navigate to next page or next lesson
             document.getElementById('btn-continue-story').addEventListener('click', function() {
-                // Get current page number from URL or use the stored value
+                // Get current page number from URL
                 const hash = window.location.hash;
-                let urlPageNumber = 1; // Default to page 1
-                
+                let urlPageNumber = currentPageNumber;
                 if (hash && hash.startsWith('#/')) {
                     const parts = hash.substring(2).split('/');
                     if (parts.length >= 4 && parts[3]) {
-                        // Page number is in URL
                         urlPageNumber = parseInt(parts[3]) || 1;
-                    } else {
-                        // No page number in URL, default to 1
-                        urlPageNumber = 1;
                     }
                 }
                 
