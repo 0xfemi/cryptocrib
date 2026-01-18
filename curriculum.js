@@ -14,12 +14,12 @@ const CURRICULUM = {
                 title: 'Chapter 1: The Evolution of Value and the Birth of Bitcoin',
                 description: 'Understanding distributed ledgers, consensus mechanisms, and how blockchain works.',
                 lessons: [
-                    { id: '1-1', title: 'What is Blockchain?', type: 'reading', duration: 15, xp: 50 },
-                    { id: '1-2', title: 'Distributed Ledgers Explained', type: 'reading', duration: 20, xp: 50 },
-                    { id: '1-3', title: 'Consensus Mechanisms: PoW vs PoS', type: 'interactive', duration: 25, xp: 75 },
-                    { id: '1-4', title: 'How Blocks are Created', type: 'reading', duration: 20, xp: 50 },
-                    { id: '1-5', title: 'Merkle Trees and Hashing', type: 'code', duration: 30, xp: 100 },
-                    { id: '1-6', title: 'Challenge: Build a Simple Hash Function', type: 'challenge', duration: 45, xp: 150 }
+                    { id: '1-1', title: 'The Pre-Monetary Era and the Problem of Coincidence', type: 'reading', duration: 15, xp: 50 },
+                    { id: '1-2', title: 'The Shift to Fiat and the Trust Gap', type: 'reading', duration: 20, xp: 50 },
+                    { id: '1-3', title: 'The 2008 Global Financial Crisis', type: 'interactive', duration: 25, xp: 75 },
+                    { id: '1-4', title: 'Satoshi Nakamoto and the Whitepaper', type: 'reading', duration: 20, xp: 50 },
+                    { id: '1-5', title: 'The Genesis Block', type: 'code', duration: 30, xp: 100 },
+                    { id: '1-6', title: 'Solving the Double Spend Problem', type: 'challenge', duration: 45, xp: 150 }
                 ]
             },
             {
