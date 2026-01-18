@@ -146,9 +146,11 @@
             const chapterMatch = chapter.title.match(/\d+/);
             const chapterNumber = chapterMatch ? chapterMatch[0] : '1';
 
-            // Update breadcrumb - only show ", Intro" for introduction lesson (lesson ID ends with "-0")
+            // Update breadcrumb - remove colon from chapter title and only show ", Intro" for introduction lesson
             const isIntroduction = lesson.id && lesson.id.endsWith('-0');
-            const breadcrumbText = isIntroduction ? `Chapter ${chapterNumber}, Intro` : `Chapter ${chapterNumber}`;
+            // Remove colon from chapter title if present
+            const chapterTitleWithoutColon = chapter.title.replace(':', '');
+            const breadcrumbText = isIntroduction ? `${chapterTitleWithoutColon}, Intro` : chapterTitleWithoutColon;
             document.getElementById('story-breadcrumb').textContent = breadcrumbText;
             
             // Get story title from lesson content or use lesson title
