@@ -137,7 +137,7 @@
 
             // Setup continue button - navigate to next page or next lesson
             document.getElementById('btn-continue-story').addEventListener('click', function() {
-                // Get current page number from URL or use stored value
+                // Get current page number from URL
                 const hash = window.location.hash;
                 let urlPageNumber = currentPageNumber;
                 if (hash && hash.startsWith('#/')) {
@@ -160,8 +160,22 @@
                         const nextLesson = chapter.lessons[currentLessonIndex + 1];
                         window.location.href = `lesson-story.html#/${pathId}/${chapterId}/${nextLesson.id}/1`;
                     } else {
-                        // Last lesson in chapter, go back to lesson summary page
-                        window.location.href = `lesson.html#/${pathId}/${chapterId}/${lessonId}`;
+                        // Last lesson in chapter, go to first page of first lesson in next chapter (if exists)
+                        // or back to lesson summary page
+                        const currentChapterIndex = path.chapters.findIndex(ch => ch.id === chapterId);
+                        if (currentChapterIndex >= 0 && currentChapterIndex < path.chapters.length - 1) {
+                            // Go to first lesson of next chapter
+                            const nextChapter = path.chapters[currentChapterIndex + 1];
+                            if (nextChapter.lessons.length > 0) {
+                                const firstLesson = nextChapter.lessons[0];
+                                window.location.href = `lesson-story.html#/${pathId}/${nextChapter.id}/${firstLesson.id}/1`;
+                            } else {
+                                window.location.href = `lesson.html#/${pathId}/${chapterId}/${lessonId}`;
+                            }
+                        } else {
+                            // Last lesson in last chapter, go back to lesson summary page
+                            window.location.href = `lesson.html#/${pathId}/${chapterId}/${lessonId}`;
+                        }
                     }
                 }
             });
