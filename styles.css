@@ -5058,4 +5058,180 @@ html {
     }
 }
 
+/* ============================================
+   LESSON STORY PAGE STYLES (SavingSatoshi Inspired)
+   ============================================ */
+
+.lesson-story-body {
+    background: #000000;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.lesson-story-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.story-split-layout {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.story-text-section {
+    flex: 1;
+    min-width: 50%;
+    background: #2a2a2a;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.story-header {
+    margin-bottom: 40px;
+}
+
+.story-breadcrumb {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 12px;
+    font-family: 'Inter', sans-serif;
+}
+
+.story-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.2;
+}
+
+.story-content {
+    flex: 1;
+    font-size: 18px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 40px;
+}
+
+.story-content p {
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.story-content .dialogue {
+    font-style: italic;
+    margin-left: 24px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.story-actions {
+    margin-top: auto;
+}
+
+.btn-continue-story {
+    padding: 16px 40px;
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    min-width: 200px;
+}
+
+.btn-continue-story:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.story-image-section {
+    flex: 1;
+    min-width: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* Default background image */
+.story-image-section {
+    background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600&q=90');
+}
+
+/* Chapter-specific background images */
+.story-image-section.chapter-1 {
+    background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600&q=90');
+    background-position: center right;
+}
+
+.story-image-section.chapter-2 {
+    background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600&q=90');
+    background-position: center right;
+}
+
+.story-image-section.chapter-3 {
+    background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&q=90');
+    background-position: center right;
+}
+
+.story-image-section.chapter-4 {
+    background-image: url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1600&q=90');
+    background-position: center right;
+}
+
+.story-image-section.chapter-5 {
+    background-image: url('https://images.unsplash.com/photo-1563089145-599997674d42?w=1600&q=90');
+    background-position: center right;
+}
+
+/* Responsive styles for story page */
+@media (max-width: 1024px) {
+    .story-split-layout {
+        flex-direction: column;
+    }
+    
+    .story-image-section {
+        height: 300px;
+        min-height: 300px;
+        flex: none;
+    }
+    
+    .story-text-section {
+        flex: 1;
+        padding: 40px 40px;
+        min-height: calc(100vh - 300px);
+    }
+}
+
+@media (max-width: 768px) {
+    .story-text-section {
+        padding: 32px 24px;
+    }
+    
+    .story-title {
+        font-size: 24px;
+    }
+    
+    .story-content {
+        font-size: 16px;
+    }
+    
+    .story-image-section {
+        height: 250px;
+        min-height: 250px;
+    }
+}
+
 

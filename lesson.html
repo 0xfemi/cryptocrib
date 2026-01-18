@@ -359,15 +359,14 @@
             window.viewLessonDetails = viewLessonDetails;
 
             function startLesson(lesson) {
-                // Always show quiz for all lesson types (users can take quiz after reading/learning)
-                // Code/challenge lessons will have quiz AND code editor
-                document.getElementById('quiz-section').classList.remove('hidden');
-                setupQuiz(lesson);
+                // Navigate to story page
+                const urlParams = new URLSearchParams(window.location.search);
+                const pathId = window.urlParams?.path || urlParams.get('path') || 'beginner';
+                const chapterId = window.urlParams?.chapter || urlParams.get('chapter') || '';
+                const lessonId = window.urlParams?.lesson || urlParams.get('lesson') || '';
                 
-                // Also show code editor if it's a code/challenge lesson
-                if (lesson.type === 'code' || lesson.type === 'challenge') {
-                    document.getElementById('code-editor-section').classList.remove('hidden');
-                }
+                // Use hash-based URL format
+                window.location.href = `lesson-story.html#/${pathId}/${chapterId}/${lessonId}`;
             }
 
             function setupCodeEditor(lesson) {
