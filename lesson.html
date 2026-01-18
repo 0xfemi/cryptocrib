@@ -360,12 +360,7 @@
 
             function startLesson(lesson) {
                 // Navigate to story page
-                const urlParams = new URLSearchParams(window.location.search);
-                const pathId = window.urlParams?.path || urlParams.get('path') || 'beginner';
-                const chapterId = window.urlParams?.chapter || urlParams.get('chapter') || '';
-                const lessonId = window.urlParams?.lesson || urlParams.get('lesson') || '';
-                
-                // Use hash-based URL format
+                // Use the path, chapter, and lesson variables already in scope
                 window.location.href = `lesson-story.html#/${pathId}/${chapterId}/${lessonId}`;
             }
 
