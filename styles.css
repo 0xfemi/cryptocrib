@@ -5127,7 +5127,7 @@ html {
 
 .story-content p {
     margin-bottom: 28px;
-    text-align: left;
+    text-align: justify;
 }
 
 .story-content .dialogue {
