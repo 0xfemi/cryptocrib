@@ -4451,11 +4451,11 @@ html {
     }
     
     .lesson-main-title {
-        font-size: 48px;
+        font-size: 12px;
     }
     
     .lesson-subtitle {
-        font-size: 20px;
+        font-size: 36px;
     }
 }
 
@@ -4465,11 +4465,11 @@ html {
     }
     
     .lesson-main-title {
-        font-size: 36px;
+        font-size: 11px;
     }
     
     .lesson-subtitle {
-        font-size: 12px;
+        font-size: 28px;
     }
     
     .lesson-story-content {
