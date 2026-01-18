@@ -24,9 +24,7 @@
                 </div>
                 
                 <div class="story-content" id="story-content">
-                    <p>Moments later, your Hover Screen activates.</p>
-                    <p class="dialogue">—Deborah Chunk: "Thomas Vanderpoole. As the well-dressed CEO of BitRey, you run, by far, the largest bitcoin mining pool in the world. You also manufacture bitcoin mining machines. What is happening? Is bitcoin dying?"</p>
-                    <p class="dialogue">—Vanderpoole: "Let's start from the top. Yes, I am, Deborah, and yes, I do. The Vanderpooles—my well-dressed daddy and his well-dressed daddy before him—have been mining since block 21,000. That's why I can confidently say that miners across the world are causing these delays by turning off their machines. This is a protest. No one wants bitcoin to stop being issued at 21 million. Miners cannot survive on fees alone."</p>
+                    <!-- Story content loaded dynamically from lesson-content.js -->
                 </div>
                 
                 <div class="story-actions">
@@ -159,13 +157,26 @@
             }
 
             function loadStoryContent(lesson, chapter) {
-                // Content is already hardcoded in HTML to match screenshot
-                // Only override if we have custom story dialogue for this lesson
                 const storyContent = document.getElementById('story-content');
+                let contentToDisplay = '';
+                
+                // Check if we have custom story dialogue for this lesson
                 if (window.LESSON_CONTENT && window.LESSON_CONTENT[lesson.id] && window.LESSON_CONTENT[lesson.id].storyDialogue) {
-                    storyContent.innerHTML = window.LESSON_CONTENT[lesson.id].storyDialogue;
+                    contentToDisplay = window.LESSON_CONTENT[lesson.id].storyDialogue;
+                } 
+                // Otherwise, use the story content from lesson-content.js
+                else if (window.LESSON_CONTENT && window.LESSON_CONTENT[lesson.id] && window.LESSON_CONTENT[lesson.id].story) {
+                    // Extract text from story and format for story page
+                    const storyHtml = window.LESSON_CONTENT[lesson.id].story;
+                    // Remove wrapper divs and extract paragraphs
+                    contentToDisplay = storyHtml.replace(/<div[^>]*>/g, '').replace(/<\/div>/g, '').trim();
                 }
-                // Otherwise, keep the default hardcoded content that matches the screenshot
+                // Fallback to lesson title if no content available
+                else {
+                    contentToDisplay = `<p>Welcome to ${lesson.title}. Let's begin exploring this topic.</p>`;
+                }
+                
+                storyContent.innerHTML = contentToDisplay;
             }
         });
     </script>
