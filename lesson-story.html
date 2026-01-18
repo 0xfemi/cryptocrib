@@ -165,13 +165,18 @@
 
             // Setup continue button - navigate to next page or next lesson
             document.getElementById('btn-continue-story').addEventListener('click', function() {
-                // Get current page number from URL
+                // Get current page number from URL - default to 1 if not specified
                 const hash = window.location.hash;
-                let urlPageNumber = currentPageNumber;
+                let urlPageNumber = 1; // Default to page 1
+                
                 if (hash && hash.startsWith('#/')) {
                     const parts = hash.substring(2).split('/');
-                    if (parts.length >= 4 && parts[3]) {
+                    // If page number is specified in URL (parts[3] exists)
+                    if (parts.length >= 4 && parts[3] && parts[3] !== '') {
                         urlPageNumber = parseInt(parts[3]) || 1;
+                    } else {
+                        // No page number in URL, default to 1
+                        urlPageNumber = 1;
                     }
                 }
                 
@@ -184,7 +189,7 @@
                     const currentLessonIndex = chapter.lessons.findIndex(l => l.id === lessonId);
                     
                     if (currentLessonIndex >= 0 && currentLessonIndex < chapter.lessons.length - 1) {
-                        // Go to first page of next lesson
+                        // Go to first page of next lesson in sequence
                         const nextLesson = chapter.lessons[currentLessonIndex + 1];
                         window.location.href = `lesson-story.html#/${pathId}/${chapterId}/${nextLesson.id}/1`;
                     } else {
