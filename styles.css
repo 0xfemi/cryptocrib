@@ -5089,7 +5089,7 @@ html {
     padding: 60px 80px;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    overflow-y: hidden;
     justify-content: space-between;
 }
 
