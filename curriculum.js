@@ -14,6 +14,7 @@ const CURRICULUM = {
                 title: 'Chapter 1: The Evolution of Value and the Birth of Bitcoin',
                 description: 'Explore the history of money, from pre-monetary systems to fiat currency, the 2008 financial crisis, and how Bitcoin emerged as a revolutionary solution to create decentralized digital money.',
                 lessons: [
+                    { id: '1-0', title: 'Introduction', type: 'reading', duration: 10, xp: 25 },
                     { id: '1-1', title: 'The Pre-Monetary Era and the Problem of Coincidence', type: 'reading', duration: 15, xp: 50 },
                     { id: '1-2', title: 'The Shift to Fiat and the Trust Gap', type: 'reading', duration: 20, xp: 50 },
                     { id: '1-3', title: 'The 2008 Global Financial Crisis', type: 'interactive', duration: 25, xp: 75 },
@@ -27,6 +28,7 @@ const CURRICULUM = {
                 title: 'Chapter 2: Understanding Bitcoin',
                 description: 'Deep dive into Bitcoin, transactions, mining, and the genesis block.',
                 lessons: [
+                    { id: '2-0', title: 'Introduction', type: 'reading', duration: 10, xp: 25 },
                     { id: '2-1', title: 'Bitcoin Whitepaper Overview', type: 'reading', duration: 30, xp: 75 },
                     { id: '2-2', title: 'Bitcoin Transactions and UTXOs', type: 'interactive', duration: 25, xp: 75 },
                     { id: '2-3', title: 'Mining and Proof of Work', type: 'reading', duration: 20, xp: 50 },
@@ -42,6 +44,7 @@ const CURRICULUM = {
                 title: 'Chapter 3: Crypto Wallets',
                 description: 'Learn about wallets, key management, seed phrases, and wallet security.',
                 lessons: [
+                    { id: '3-0', title: 'Introduction', type: 'reading', duration: 10, xp: 25 },
                     { id: '3-1', title: 'Types of Wallets: Hot vs Cold', type: 'reading', duration: 20, xp: 50 },
                     { id: '3-2', title: 'Seed Phrases and BIP39', type: 'reading', duration: 25, xp: 75 },
                     { id: '3-3', title: 'HD Wallets and Derivation Paths', type: 'interactive', duration: 30, xp: 75 },
@@ -55,6 +58,7 @@ const CURRICULUM = {
                 title: 'Chapter 4: Ethereum Basics',
                 description: 'Introduction to Ethereum, accounts, gas, and the EVM.',
                 lessons: [
+                    { id: '4-0', title: 'Introduction', type: 'reading', duration: 10, xp: 25 },
                     { id: '4-1', title: 'What is Ethereum?', type: 'reading', duration: 25, xp: 75 },
                     { id: '4-2', title: 'Ethereum Accounts: EOA vs Contracts', type: 'reading', duration: 20, xp: 50 },
                     { id: '4-3', title: 'Gas and Transaction Fees', type: 'interactive', duration: 25, xp: 75 },
@@ -69,6 +73,7 @@ const CURRICULUM = {
                 title: 'Chapter 5: Layer 2 Solutions',
                 description: 'Exploring Base, Optimism, Arbitrum, and other scaling solutions.',
                 lessons: [
+                    { id: '5-0', title: 'Introduction', type: 'reading', duration: 10, xp: 25 },
                     { id: '5-1', title: 'The Scaling Problem', type: 'reading', duration: 20, xp: 50 },
                     { id: '5-2', title: 'Base: Coinbase\'s L2', type: 'reading', duration: 25, xp: 75 },
                     { id: '5-3', title: 'Optimism: Optimistic Rollups', type: 'reading', duration: 30, xp: 75 },
@@ -93,6 +98,7 @@ const CURRICULUM = {
                 title: 'Chapter 6: DeFi Fundamentals',
                 description: 'Decentralized Finance, AMMs, lending protocols, and yield farming.',
                 lessons: [
+                    { id: '6-0', title: 'Introduction', type: 'reading', duration: 10, xp: 25 },
                     { id: '6-1', title: 'Introduction to DeFi', type: 'reading', duration: 25, xp: 75 },
                     { id: '6-2', title: 'Automated Market Makers (AMMs)', type: 'reading', duration: 30, xp: 100 },
                     { id: '6-3', title: 'Understanding Uniswap', type: 'interactive', duration: 35, xp: 100 },
@@ -107,6 +113,7 @@ const CURRICULUM = {
                 title: 'Chapter 7: Introduction to Solidity',
                 description: 'Learn Solidity programming, variables, functions, and contract structure.',
                 lessons: [
+                    { id: '7-0', title: 'Introduction', type: 'reading', duration: 10, xp: 25 },
                     { id: '7-1', title: 'Solidity Basics and Syntax', type: 'reading', duration: 30, xp: 100 },
                     { id: '7-2', title: 'Variables and Data Types', type: 'code', duration: 35, xp: 100 },
                     { id: '7-3', title: 'Functions and Modifiers', type: 'code', duration: 40, xp: 150 },
@@ -121,6 +128,7 @@ const CURRICULUM = {
                 title: 'Chapter 8: Token Development',
                 description: 'ERC-20, ERC-721, ERC-1155 standards and token economics.',
                 lessons: [
+                    { id: '8-0', title: 'Introduction', type: 'reading', duration: 10, xp: 25 },
                     { id: '8-1', title: 'ERC-20 Token Standard', type: 'reading', duration: 30, xp: 100 },
                     { id: '8-2', title: 'Building an ERC-20 Token', type: 'code', duration: 45, xp: 150 },
                     { id: '8-3', title: 'ERC-721 NFTs Explained', type: 'reading', duration: 30, xp: 100 },
@@ -135,6 +143,7 @@ const CURRICULUM = {
                 title: 'Chapter 9: Building dApps',
                 description: 'Full-stack dApp development with React, Web3.js, and smart contract integration.',
                 lessons: [
+                    { id: '9-0', title: 'Introduction', type: 'reading', duration: 10, xp: 25 },
                     { id: '9-1', title: 'dApp Architecture Overview', type: 'reading', duration: 25, xp: 75 },
                     { id: '9-2', title: 'Web3.js and Ethers.js', type: 'code', duration: 40, xp: 150 },
                     { id: '9-3', title: 'Connecting Frontend to Contracts', type: 'code', duration: 45, xp: 150 },
@@ -159,6 +168,7 @@ const CURRICULUM = {
                 title: 'Chapter 10: Smart Contract Security',
                 description: 'Common vulnerabilities, best practices, and security patterns.',
                 lessons: [
+                    { id: '10-0', title: 'Introduction', type: 'reading', duration: 10, xp: 25 },
                     { id: '10-1', title: 'Common Vulnerabilities Overview', type: 'reading', duration: 30, xp: 100 },
                     { id: '10-2', title: 'Reentrancy Attacks', type: 'code', duration: 45, xp: 200 },
                     { id: '10-3', title: 'Integer Overflow and Underflow', type: 'code', duration: 35, xp: 150 },
@@ -172,6 +182,7 @@ const CURRICULUM = {
                 title: 'Chapter 11: Security Auditing',
                 description: 'Audit methodologies, tools, and best practices for secure contracts.',
                 lessons: [
+                    { id: '11-0', title: 'Introduction', type: 'reading', duration: 10, xp: 25 },
                     { id: '11-1', title: 'Audit Methodology', type: 'reading', duration: 30, xp: 100 },
                     { id: '11-2', title: 'Static Analysis Tools: Slither, MythX', type: 'code', duration: 50, xp: 200 },
                     { id: '11-3', title: 'Fuzzing and Dynamic Testing', type: 'code', duration: 45, xp: 200 },
@@ -185,6 +196,7 @@ const CURRICULUM = {
                 title: 'Chapter 12: Advanced Protocols',
                 description: 'Zero-knowledge proofs, cross-chain protocols, and advanced DeFi mechanisms.',
                 lessons: [
+                    { id: '12-0', title: 'Introduction', type: 'reading', duration: 10, xp: 25 },
                     { id: '12-1', title: 'Zero-Knowledge Proofs: zk-SNARKs', type: 'reading', duration: 45, xp: 200 },
                     { id: '12-2', title: 'ZK-Rollups Deep Dive', type: 'reading', duration: 40, xp: 200 },
                     { id: '12-3', title: 'Cross-Chain Bridges', type: 'reading', duration: 35, xp: 150 },
