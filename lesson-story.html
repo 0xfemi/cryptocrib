@@ -12,6 +12,34 @@
     <script src="lesson-content.js"></script>
 </head>
 <body class="lesson-story-body">
+    <!-- Hamburger Menu Button -->
+    <button class="hamburger-menu-btn" id="hamburger-menu-btn" aria-label="Toggle lessons menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <!-- Lessons Sidebar -->
+    <div class="lessons-sidebar" id="lessons-sidebar">
+        <div class="lessons-sidebar-header">
+            <h3 class="lessons-sidebar-title" id="lessons-sidebar-title">Chapter Lessons</h3>
+            <button class="lessons-sidebar-close" id="lessons-sidebar-close" aria-label="Close menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="lessons-list" id="lessons-list">
+            <!-- Lessons will be populated dynamically -->
+        </div>
+    </div>
+
+    <!-- Overlay for sidebar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
     <!-- Story Container -->
     <div class="lesson-story-container" id="story-container">
         <!-- Split Layout: Text Left, Image Right -->
@@ -250,6 +278,71 @@
                 if (currentPage !== pageNumber) {
                     window.history.replaceState(null, '', `lesson-story.html#/${pathId}/${chapterId}/${lessonId}/${currentPage}`);
                 }
+            }
+
+            function setupHamburgerMenu(chapter, pathId, chapterId, currentLessonId) {
+                const hamburgerBtn = document.getElementById('hamburger-menu-btn');
+                const sidebar = document.getElementById('lessons-sidebar');
+                const sidebarClose = document.getElementById('lessons-sidebar-close');
+                const overlay = document.getElementById('sidebar-overlay');
+                const lessonsList = document.getElementById('lessons-list');
+                const sidebarTitle = document.getElementById('lessons-sidebar-title');
+
+                // Set sidebar title
+                sidebarTitle.textContent = chapter.title;
+
+                // Populate lessons list
+                lessonsList.innerHTML = chapter.lessons.map((lesson, index) => {
+                    const isActive = lesson.id === currentLessonId;
+                    const lessonTypeIcons = {
+                        'reading': '📖',
+                        'interactive': '🎮',
+                        'code': '💻',
+                        'challenge': '⚡'
+                    };
+                    const icon = lessonTypeIcons[lesson.type] || '📖';
+                    
+                    return `
+                        <div class="lesson-item ${isActive ? 'active' : ''}" data-lesson-id="${lesson.id}">
+                            <div class="lesson-item-icon">${icon}</div>
+                            <div class="lesson-item-content">
+                                <div class="lesson-item-title">${lesson.title}</div>
+                                <div class="lesson-item-meta">${lesson.type.charAt(0).toUpperCase() + lesson.type.slice(1)} • ${lesson.duration} min • +${lesson.xp} XP</div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Add click handlers to lesson items
+                lessonsList.querySelectorAll('.lesson-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        const lessonId = this.dataset.lessonId;
+                        if (lessonId !== currentLessonId) {
+                            window.location.href = `lesson-story.html#/${pathId}/${chapterId}/${lessonId}/1`;
+                        }
+                    });
+                });
+
+                // Toggle sidebar
+                function toggleSidebar() {
+                    sidebar.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                    document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+                }
+
+                // Open sidebar
+                hamburgerBtn.addEventListener('click', toggleSidebar);
+                
+                // Close sidebar
+                sidebarClose.addEventListener('click', toggleSidebar);
+                overlay.addEventListener('click', toggleSidebar);
+
+                // Close on Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+                        toggleSidebar();
+                    }
+                });
             }
         });
     </script>
