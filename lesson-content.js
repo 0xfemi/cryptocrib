@@ -106,6 +106,126 @@ const LESSON_CONTENT = {
             }
         ]
     },
+    '1-3': {
+        title: 'Consensus Mechanisms: PoW vs PoS',
+        story: `
+            <div class="story-paragraph">
+                <p>Consensus mechanisms are the protocols that allow blockchain networks to agree on the validity of transactions and maintain a single, consistent ledger across all nodes. Proof of Work (PoW) requires miners to solve computationally intensive puzzles to validate transactions and create new blocks, with Bitcoin being the most famous example. Proof of Stake (PoS) selects validators based on the amount of cryptocurrency they hold and stake as collateral, with Ethereum transitioning to this model in 2022. Each mechanism has trade-offs between security, energy consumption, and decentralization, with PoW providing proven security through computational work while PoS offers energy efficiency and faster transaction processing.</p>
+            </div>
+        `,
+        resources: [
+            {
+                title: 'Binance Academy - Consensus Mechanisms',
+                url: 'https://academy.binance.com/en/articles/proof-of-work-vs-proof-of-stake',
+                description: 'Understanding different consensus mechanisms in blockchain',
+                source: 'Binance Academy'
+            },
+            {
+                title: 'Ethereum.org - Proof of Stake',
+                url: 'https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/',
+                description: 'Learn about Ethereum\'s Proof of Stake consensus',
+                source: 'Ethereum Foundation'
+            }
+        ],
+        quiz: [
+            {
+                question: 'What is the main difference between Proof of Work and Proof of Stake?',
+                options: ['PoW is faster', 'PoS uses less energy', 'PoW is more secure', 'PoS requires more hardware'],
+                correct: 1,
+                explanation: 'Proof of Stake is more energy-efficient than Proof of Work because it doesn\'t require intensive computational mining.'
+            }
+        ]
+    },
+    '1-4': {
+        title: 'How Blocks are Created',
+        story: `
+            <div class="story-paragraph">
+                <p>Blocks are the fundamental building units of a blockchain, containing batches of validated transactions that are cryptographically linked together. The process of creating a block involves collecting pending transactions, validating them according to the network\'s rules, and then adding the block to the chain through the consensus mechanism. In Proof of Work systems like Bitcoin, miners compete to solve a cryptographic puzzle, and the first to solve it gets to create the next block and receive rewards. Each block contains a header with metadata including the previous block\'s hash, a timestamp, a nonce, and a Merkle root of all transactions, creating an immutable chain where altering any block would require recalculating all subsequent blocks.</p>
+            </div>
+        `,
+        resources: [
+            {
+                title: 'Bitcoin.org - How Blocks Work',
+                url: 'https://bitcoin.org/en/how-it-works',
+                description: 'Understanding how blocks are created in Bitcoin',
+                source: 'Bitcoin.org'
+            },
+            {
+                title: 'Binance Academy - Blockchain Blocks',
+                url: 'https://academy.binance.com/en/articles/what-is-a-blockchain',
+                description: 'Learn about blocks and blockchain structure',
+                source: 'Binance Academy'
+            }
+        ],
+        quiz: [
+            {
+                question: 'What links each block to the previous one in a blockchain?',
+                options: ['A timestamp', 'A cryptographic hash', 'A transaction ID', 'A random number'],
+                correct: 1,
+                explanation: 'Each block contains a cryptographic hash of the previous block, creating an immutable chain.'
+            }
+        ]
+    },
+    '1-5': {
+        title: 'Merkle Trees and Hashing',
+        story: `
+            <div class="story-paragraph">
+                <p>Merkle trees are a fundamental data structure in blockchain technology that enable efficient and secure verification of large datasets. A Merkle tree organizes transactions in a binary tree where each leaf node represents a transaction hash, and each parent node is the hash of its children, ultimately creating a single root hash that represents the entire set of transactions. This structure allows nodes to verify that a specific transaction is included in a block by checking just a small path through the tree, rather than downloading and verifying all transactions. Hashing functions convert data of any size into a fixed-length string of characters, and any change to the input data produces a completely different hash, making it ideal for detecting tampering and creating cryptographic links between blocks.</p>
+            </div>
+        `,
+        resources: [
+            {
+                title: 'Bitcoin.org - Merkle Trees',
+                url: 'https://developer.bitcoin.org/devguide/block_chain.html',
+                description: 'Understanding Merkle trees in Bitcoin',
+                source: 'Bitcoin.org'
+            },
+            {
+                title: 'Binance Academy - Hashing',
+                url: 'https://academy.binance.com/en/articles/what-is-hashing',
+                description: 'Learn about cryptographic hashing functions',
+                source: 'Binance Academy'
+            }
+        ],
+        quiz: [
+            {
+                question: 'What is the main advantage of using Merkle trees in blockchain?',
+                options: ['They make blocks smaller', 'They enable efficient transaction verification', 'They increase transaction speed', 'They reduce fees'],
+                correct: 1,
+                explanation: 'Merkle trees allow efficient verification of transactions without needing to download and verify all transactions in a block.'
+            }
+        ]
+    },
+    '1-6': {
+        title: 'Challenge: Build a Simple Hash Function',
+        story: `
+            <div class="story-paragraph">
+                <p>Understanding how hash functions work is crucial for grasping blockchain technology at a deeper level. A hash function takes input data of any size and produces a fixed-size output that appears random but is deterministic, meaning the same input always produces the same output. Cryptographic hash functions like SHA-256 have three key properties: they are one-way functions that cannot be reversed, they produce unique outputs for different inputs, and even a tiny change in input creates a completely different output. Building a simple hash function helps you understand these concepts and see how blockchain uses hashing to create secure, tamper-evident chains of blocks where any modification would be immediately detectable through hash mismatches.</p>
+            </div>
+        `,
+        resources: [
+            {
+                title: 'Binance Academy - Hash Functions',
+                url: 'https://academy.binance.com/en/articles/what-is-hashing',
+                description: 'Learn about cryptographic hash functions',
+                source: 'Binance Academy'
+            },
+            {
+                title: 'Ethereum.org - Cryptography',
+                url: 'https://ethereum.org/en/developers/docs/cryptography/',
+                description: 'Understanding cryptography in blockchain',
+                source: 'Ethereum Foundation'
+            }
+        ],
+        quiz: [
+            {
+                question: 'What happens if you change even one character in the input to a hash function?',
+                options: ['The output stays the same', 'The output changes completely', 'The function fails', 'Nothing happens'],
+                correct: 1,
+                explanation: 'Hash functions are designed so that any change in input produces a completely different output, making tampering easily detectable.'
+            }
+        ]
+    },
     '2-1': {
         title: 'Bitcoin Whitepaper Overview',
         story: `
