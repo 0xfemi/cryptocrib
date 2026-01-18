@@ -11,7 +11,7 @@ const CURRICULUM = {
         chapters: [
             {
                 id: 'ch1-blockchain-basics',
-                title: 'Chapter 1: Introduction to Blockchain',
+                title: 'Chapter 1: The Evolution of Value and the Birth of Bitcoin',
                 description: 'Understanding distributed ledgers, consensus mechanisms, and how blockchain works.',
                 lessons: [
                     { id: '1-1', title: 'What is Blockchain?', type: 'reading', duration: 15, xp: 50 },
