@@ -5121,6 +5121,8 @@ html {
     color: rgba(255, 255, 255, 0.95);
     font-family: 'Inter', sans-serif;
     margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .story-content p {
