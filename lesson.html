@@ -243,27 +243,12 @@
             const chapterMatch = chapter.title.match(/\d+/);
             const chapterNumber = chapterMatch ? chapterMatch[0] : '1';
 
-            // Extract chapter number and main title from chapter title
-            // Format: "Chapter 1: The Evolution of Value and the Birth of Bitcoin"
-            const chapterTitleParts = chapter.title.split(':');
-            const chapterNumberText = chapterTitleParts[0] || 'Chapter 1'; // "Chapter 1"
-            const mainTitleText = chapterTitleParts[1] ? chapterTitleParts[1].trim() : chapter.title; // "The Evolution of Value and the Birth of Bitcoin"
+            // Update lesson info - show full chapter title
+            document.getElementById('lesson-chapter-number').textContent = chapter.title;
             
-            const isIntroduction = lesson.id && lesson.id.endsWith('-0');
-            
-            if (isIntroduction) {
-                // For introduction lesson:
-                // Set chapter number (smaller font on top)
-                document.getElementById('lesson-chapter-number').textContent = chapterNumberText;
-                // Set main title (the evolution text) as the subtitle
-                document.getElementById('lesson-subtitle').textContent = mainTitleText;
-            } else {
-                // For other lessons:
-                // Set chapter number (smaller font on top)
-                document.getElementById('lesson-chapter-number').textContent = chapterNumberText;
-                // Set lesson title as subtitle
-                document.getElementById('lesson-subtitle').textContent = lesson.title;
-            }
+            // Set subtitle to lesson title
+            const subtitleElement = document.getElementById('lesson-subtitle');
+            subtitleElement.textContent = lesson.title;
 
             // Load story content
             loadStoryContent(lesson, chapter, path);
