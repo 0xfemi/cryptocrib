@@ -128,10 +128,20 @@
             // Load story content
             loadStoryContent(lesson, chapter);
 
-            // Setup continue button
+            // Setup continue button - navigate to next lesson in chapter
             document.getElementById('btn-continue-story').addEventListener('click', function() {
-                // Navigate back to lesson page or next story page
-                window.location.href = `lesson.html#/${pathId}/${chapterId}/${lessonId}`;
+                // Find current lesson index
+                const currentLessonIndex = chapter.lessons.findIndex(l => l.id === lessonId);
+                
+                // Check if there's a next lesson in this chapter
+                if (currentLessonIndex >= 0 && currentLessonIndex < chapter.lessons.length - 1) {
+                    // Go to next lesson story page
+                    const nextLesson = chapter.lessons[currentLessonIndex + 1];
+                    window.location.href = `lesson-story.html#/${pathId}/${chapterId}/${nextLesson.id}`;
+                } else {
+                    // Last lesson in chapter, go back to lesson summary page
+                    window.location.href = `lesson.html#/${pathId}/${chapterId}/${lessonId}`;
+                }
             });
 
             // Set background image based on chapter
