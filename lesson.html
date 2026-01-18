@@ -278,11 +278,20 @@
                 });
             });
 
-            // Setup start lesson button - update text with chapter number
+            // Setup start lesson button - update text based on whether it's introduction or not
             const startButton = document.getElementById('btn-start-lesson');
             const chapterMatchFinal = chapter.title.match(/\d+/);
             const chapterNumberFinal = chapterMatchFinal ? chapterMatchFinal[0] : '1';
-            startButton.textContent = `Start chapter ${chapterNumberFinal}`;
+            
+            // Check if this is the introduction lesson (lesson ID ends with "-0")
+            const isIntroduction = lesson.id && lesson.id.endsWith('-0');
+            
+            if (isIntroduction) {
+                startButton.textContent = `Start chapter ${chapterNumberFinal}`;
+            } else {
+                startButton.textContent = 'Continue';
+            }
+            
             startButton.addEventListener('click', function() {
                 startLesson(lesson);
             });
