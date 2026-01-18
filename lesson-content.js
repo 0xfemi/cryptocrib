@@ -7,7 +7,7 @@ const LESSON_CONTENT = {
         title: 'Introduction',
         story: `
             <div class="story-paragraph">
-                <p>The Evolution of Value and the Birth of Bitcoin. In this chapter, we'll explore the fascinating journey of money from its earliest forms to the revolutionary technology that is Bitcoin. You'll discover how humanity evolved from barter systems to digital currencies, and understand the problems that Bitcoin was designed to solve.</p>
+                <p>Welcome to Chapter 1: The Evolution of Value and the Birth of Bitcoin. In this chapter, we'll explore the fascinating journey of money from its earliest forms to the revolutionary technology that is Bitcoin. You'll discover how humanity evolved from barter systems to digital currencies, and understand the problems that Bitcoin was designed to solve.</p>
                 <p>Throughout this chapter, you'll learn about the pre-monetary era, the shift to fiat currency, the 2008 financial crisis that changed everything, and how Satoshi Nakamoto's vision created a new form of digital money that operates without intermediaries. Get ready to embark on a journey through the history and innovation that gave birth to the world's first successful cryptocurrency.</p>
             </div>
         `,
