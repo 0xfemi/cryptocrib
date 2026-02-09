@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses – Cryptocrib Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000;family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="curriculum.js"></script>
+    <script src="dashboard-enhancements.js"></script>
+</head>
+<body class="dashboard-body">
+    <!-- Dashboard Layout -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <span class="logo-text">Cryptocrib</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <p class="nav-section-title">PLATFORM</p>
+                    <a href="dashboard.html" class="nav-item">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.5 10L10 2.5L17.5 10M10 17.5V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="courses.html" class="nav-item active">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.25 2.5H3.75C3.05964 2.5 2.5 3.05964 2.5 3.75V16.25C2.5 16.9404 3.05964 17.5 3.75 17.5H16.25C16.9404 17.5 17.5 16.9404 17.5 16.25V3.75C17.5 3.05964 16.9404 2.5 16.25 2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M7.5 2.5V17.5M2.5 7.5H17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>My Courses</span>
+                    </a>
+                    <a href="settings.html" class="nav-item">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M0 20C0 15.5817 4.47715 12 10 12C15.5228 12 20 15.5817 20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </nav>
+            <div class="sidebar-profile">
+                <div class="profile-avatar">
+                    <img src="https://ui-avatars.com/api/?name=0xfemi&background=0088FF&color=fff" alt="0xfemi" />
+                </div>
+                <div class="profile-info">
+                    <p class="profile-name">0xfemi</p>
+                    <p class="profile-role">Pro Student</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 14L11.1 11.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <input type="text" placeholder="Search lessons..." />
+                    </div>
+                </div>
+            </header>
+
+            <!-- Courses Content -->
+            <div class="dashboard-content">
+                <section class="courses-header">
+                    <h1 class="courses-title">Learning Paths</h1>
+                    <p class="courses-subtitle">Choose your path and master Web3 step by step</p>
+                </section>
+
+                <!-- Path Tabs -->
+                <section class="path-tabs-section">
+                    <div class="path-tabs" id="path-tabs">
+                        <button class="path-tab active" data-path="beginner">Beginner</button>
+                        <button class="path-tab" data-path="intermediate">Intermediate</button>
+                        <button class="path-tab" data-path="advanced">Advanced</button>
+                    </div>
+                </section>
+
+                <!-- Path Content -->
+                <section class="path-content-section" id="path-content">
+                    <!-- Populated by JavaScript -->
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Check authentication
+        (function() {
+            const authData = localStorage.getItem('cryptocrib_auth');
+            if (!authData) {
+                window.location.href = 'auth.html';
+                return;
+            }
+            try {
+                const auth = JSON.parse(authData);
+                if (!auth.isLoggedIn) {
+                    window.location.href = 'auth.html';
+                    return;
+                }
+            } catch (e) {
+                window.location.href = 'auth.html';
+                return;
+            }
+        })();
+
+        // Make curriculum data available globally
+        if (typeof CURRICULUM !== 'undefined') {
+            window.CURRICULUM = CURRICULUM;
+        }
+
+        // Initialize courses page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get active path from URL or default to beginner
+            // Parse URL - support both hash-based and query parameters
+            let activePathId = 'beginner';
+            const hash = window.location.hash;
+            if (hash && hash.startsWith('#/')) {
+                const parts = hash.substring(2).split('/');
+                if (parts.length >= 1 && parts[0]) {
+                    activePathId = parts[0];
+                }
+            } else {
+                // Fallback to query parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                activePathId = urlParams.get('path') || 'beginner';
+                // Update URL to clean format
+                if (activePathId && window.location.hash !== `#/${activePathId}`) {
+                    window.history.replaceState(null, '', `courses.html#/${activePathId}`);
+                }
+            }
+
+            // Initialize dashboard enhancements
+            if (!window.dashboardEnhancements) {
+                window.dashboardEnhancements = new DashboardEnhancements();
+            }
+
+            const progress = window.dashboardEnhancements.getProgress();
+
+            // Setup tab switching
+            const tabs = document.querySelectorAll('.path-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const pathId = this.dataset.path;
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    loadPathContent(pathId);
+                });
+            });
+
+            // Load initial path
+            loadPathContent(activePathId);
+            // Set active tab
+            tabs.forEach(tab => {
+                if (tab.dataset.path === activePathId) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            function loadPathContent(pathId) {
+                if (!window.CURRICULUM || !window.CURRICULUM[pathId]) {
+                    console.error('Path not found:', pathId);
+                    return;
+                }
+
+                const path = window.CURRICULUM[pathId];
+                const pathContent = document.getElementById('path-content');
+                const isUnlocked = !path.unlockedBy || progress.completedPaths.includes(path.unlockedBy);
+
+                if (!isUnlocked) {
+                    pathContent.innerHTML = `
+                        <div class="path-locked-message">
+                            <div class="lock-icon">🔒</div>
+                            <h2>Path Locked</h2>
+                            <p>Complete the ${path.unlockedBy ? window.CURRICULUM[path.unlockedBy].title : 'previous path'} to unlock this path.</p>
+                            <a href="courses.html#/${path.unlockedBy || 'beginner'}" class="btn-primary">Go to ${path.unlockedBy ? window.CURRICULUM[path.unlockedBy].title : 'Beginner Path'}</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let html = `
+                    <div class="path-overview">
+                        <div class="path-overview-content">
+                            <h2>${path.title}</h2>
+                            <p>${path.description}</p>
+                            <div class="path-stats">
+                                <div class="path-stat">
+                                    <span class="stat-value">${path.totalLessons}</span>
+                                    <span class="stat-label">Lessons</span>
+                                </div>
+                                <div class="path-stat">
+                                    <span class="stat-value">${path.chapters.length}</span>
+                                    <span class="stat-label">Chapters</span>
+                                </div>
+                                <div class="path-stat">
+                                    <span class="stat-value">${path.totalXP}</span>
+                                    <span class="stat-label">Total XP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Chapters
+                path.chapters.forEach((chapter, chapterIndex) => {
+                    const completedLessons = chapter.lessons.filter(lesson => 
+                        progress.completedLessons.includes(lesson.id)
+                    ).length;
+                    const progressPercent = (completedLessons / chapter.lessons.length) * 100;
+                    const isExpanded = chapterIndex === 0; // Expand first chapter by default
+
+                    html += `
+                        <div class="chapter-card ${isExpanded ? 'expanded' : ''}" data-chapter-id="${chapter.id}">
+                            <div class="chapter-header" onclick="toggleChapter('${chapter.id}')">
+                                <div class="chapter-header-left">
+                                    <div class="chapter-progress-ring">
+                                        <svg width="60" height="60">
+                                            <circle cx="30" cy="30" r="25" stroke="#1a1a1f" stroke-width="4" fill="none"/>
+                                            <circle cx="30" cy="30" r="25" stroke="#00ffb2" stroke-width="4" fill="none"
+                                                stroke-dasharray="${2 * Math.PI * 25}" 
+                                                stroke-dashoffset="${2 * Math.PI * 25 * (1 - progressPercent / 100)}"
+                                                transform="rotate(-90 30 30)"/>
+                                        </svg>
+                                        <div class="chapter-progress-text">${Math.round(progressPercent)}%</div>
+                                    </div>
+                                    <div class="chapter-info">
+                                        <h3 class="chapter-title">${chapter.title}</h3>
+                                        <p class="chapter-description">${chapter.description}</p>
+                                        <div class="chapter-meta">
+                                            <span>${completedLessons}/${chapter.lessons.length} lessons</span>
+                                            <span>•</span>
+                                            <span>${chapter.lessons.reduce((sum, l) => sum + l.duration, 0)} min</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chapter-header-right">
+                                    <svg class="chapter-expand-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="chapter-lessons">
+                                ${chapter.lessons.map((lesson, lessonIndex) => {
+                                    const isCompleted = progress.completedLessons.includes(lesson.id);
+                                    const lessonTypeIcons = {
+                                        'reading': '📖',
+                                        'interactive': '🎮',
+                                        'code': '💻',
+                                        'challenge': '⚡'
+                                    };
+                                    const lessonTypeColors = {
+                                        'reading': '#3B82F6',
+                                        'interactive': '#8B5CF6',
+                                        'code': '#10B981',
+                                        'challenge': '#F59E0B'
+                                    };
+
+                                    return `
+                                        <div class="lesson-item ${isCompleted ? 'completed' : ''}" 
+                                             onclick="window.location.href='lesson.html#/${pathId}/${chapter.id}/${lesson.id}'">
+                                            <div class="lesson-number">${lessonIndex + 1}</div>
+                                            <div class="lesson-content">
+                                                <div class="lesson-header">
+                                                    <h4 class="lesson-title">${lesson.title}</h4>
+                                                    <div class="lesson-badges">
+                                                        <span class="lesson-type-badge" style="background: ${lessonTypeColors[lesson.type]}20; color: ${lessonTypeColors[lesson.type]}">
+                                                            ${lessonTypeIcons[lesson.type]} ${lesson.type.charAt(0).toUpperCase() + lesson.type.slice(1)}
+                                                        </span>
+                                                        <span class="lesson-duration">${lesson.duration} min</span>
+                                                        <span class="lesson-xp">+${lesson.xp} XP</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="lesson-status">
+                                                ${isCompleted ? 
+                                                    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#00ffb2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' :
+                                                    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+                                                }
+                                            </div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                pathContent.innerHTML = html;
+            }
+
+            // Make toggleChapter available globally
+            window.toggleChapter = function(chapterId) {
+                const chapterCard = document.querySelector(`[data-chapter-id="${chapterId}"]`);
+                if (chapterCard) {
+                    chapterCard.classList.toggle('expanded');
+                }
+            };
+        });
+    </script>
+</body>
+</html>
+
